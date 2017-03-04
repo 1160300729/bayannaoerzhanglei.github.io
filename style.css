@@ -5,17 +5,17 @@
 
 @font-face {
     font-family: ZhongShan;
-    src:url("ZhongShan.ttf")
+    src:url("https://github.com/bayannaoerzhanglei/bayannaoerzhanglei.github.io/blob/master/ZhongShan.ttf")
 }
 
 @font-face {
     font-family: HWXW;
-    src:url('HWXW.ttf')
+    src:url('https://github.com/bayannaoerzhanglei/bayannaoerzhanglei.github.io/blob/master/HWXW.ttf')
 }
 
 @font-face {
     font-family: WenYue;
-    src:url('WenYue.otf')
+    src:url('https://github.com/bayannaoerzhanglei/bayannaoerzhanglei.github.io/blob/master/WenYue.otf')
 }
 
 #header {
