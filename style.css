@@ -115,23 +115,21 @@
 }
 
 #cat {
-    display: none;
     position: fixed;
-    top: 60px;
-    right: 120px;
+    top: 114px;
+    right: 10px;
 }
 
 #cat li {
-    width: 140px;
+    width: 130px;
     list-style-type: none;
-    background-color: #C1FFC1;
 }
 
 #cat a {
     font-size: 1.1em;
     display: block;
     text-decoration: none;
-    width: 140px;
+    width: 130px;
     text-align: right;
     color: darkslateblue;
 }
