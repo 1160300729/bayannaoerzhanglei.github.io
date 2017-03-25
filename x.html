@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="百度地图,百度地图API，百度地图自定义工具，百度地图所见即所得工具" />
+    <meta name="description" content="百度地图API自定义地图，帮助用户在可视化操作下生成百度地图" />
+    <title>百度地图API自定义地图</title>
+    <!--引用百度地图API-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HwGT6ByY7bUjNyPGG3A5oD58nEWCTCfd"></script>
+    <style type="text/css">
+        margin: 0;
+    </style>
+</head>
+
+<body>
+<!--百度地图容器-->
+<div style="width:100%;height:600px;border:#ccc solid 1px;font-size:12px" id="map"></div>
+
+</body>
+<script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap(){
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+        addMapOverlay();//向地图添加覆盖物
+    }
+    function createMap(){
+        map = new BMap.Map("map");
+        map.centerAndZoom(new BMap.Point(102.658532,51.36629),3);
+    }
+    function setMapEvent(){
+        map.enableScrollWheelZoom();
+        map.enableKeyboard();
+        map.enableDragging();
+        map.enableDoubleClickZoom()
+    }
+    function addClickHandler(target,window){
+        target.addEventListener("click",function(){
+            target.openInfoWindow(window);
+        });
+    }
+    function addMapOverlay(){
+        var markers = [
+            {content:"丝绸之路起点",title:"西安",imageOffset: {width:-46,height:-21},position:{lat:34.43776,lng:108.890878}},
+            {content:"",title:"嘉峪关",imageOffset: {width:-46,height:-21},position:{lat:39.797465,lng:98.322206}},
+            {content:"",title:"乌鲁木齐",imageOffset: {width:-46,height:-21},position:{lat:43.877538,lng:87.637647}},
+            {content:"",title:"喀什",imageOffset: {width:-46,height:-21},position:{lat:39.552125,lng:76.056041}},
+            {content:" ",title:" ",imageOffset: {width:-46,height:-21},position:{lat:39.800919,lng:58.431431}},
+            {content:" ",title:" ",imageOffset: {width:-46,height:-21},position:{lat:36.785768,lng:53.721723}},
+            {content:" ",title:" ",imageOffset: {width:-46,height:-21},position:{lat:32.40619,lng:46.068447}},
+            {content:" ",title:" ",imageOffset: {width:-46,height:-21},position:{lat:34.62513,lng:35.177248}}
+        ];
+        for(var index = 0; index < markers.length; index++ ){
+            var point = new BMap.Point(markers[index].position.lng,markers[index].position.lat);
+            var marker = new BMap.Marker(point,{icon:new BMap.Icon("http://api.map.baidu.com/lbsapi/createmap/images/icon.png",new BMap.Size(20,25),{
+                imageOffset: new BMap.Size(markers[index].imageOffset.width,markers[index].imageOffset.height)
+            })});
+            var label = new BMap.Label(markers[index].title,{offset: new BMap.Size(25,5)});
+            var opts = {
+                width: 200,
+                title: markers[index].title,
+                enableMessage: false
+            };
+            var infoWindow = new BMap.InfoWindow(markers[index].content,opts);
+            marker.setLabel(label);
+            addClickHandler(marker,infoWindow);
+            map.addOverlay(marker);
+        };
+        var plOpts = [
+            {strokeColor:"#f00",strokeWeight:"3",strokeOpacity:"0.4"}
+        ];
+        var plPath = [
+            [
+                new BMap.Point(109.355148,35.110367),
+                new BMap.Point(97.728057,40.478682),
+                new BMap.Point(87.572749,43.764729),
+                new BMap.Point(75.504122,39.573485),
+                new BMap.Point(57.695539,39.345297),
+                new BMap.Point(53.427366,36.310744),
+                new BMap.Point(45.774091,32.156118),
+                new BMap.Point(34.294177,34.62513),
+                new BMap.Point(34.294177,34.62513),
+                new BMap.Point(35.030069,34.137012),
+                new BMap.Point(35.030069,34.137012),
+                new BMap.Point(35.030069,34.137012),
+                new BMap.Point(35.030069,34.137012),
+                new BMap.Point(35.030069,34.137012),
+                new BMap.Point(35.030069,34.137012),
+                new BMap.Point(35.030069,34.137012),
+                new BMap.Point(35.030069,34.137012),
+                new BMap.Point(35.030069,34.137012),
+                new BMap.Point(35.030069,34.137012),
+                new BMap.Point(31.497788,33.891879),
+                new BMap.Point(30.761896,23.534127),
+                new BMap.Point(30.761896,23.534127)
+            ],
+        ];
+        for(var index = 0; index < plOpts.length; index++){
+            var polyline = new BMap.Polyline(plPath[index],plOpts[index]);
+            map.addOverlay(polyline);
+        }
+    }
+    //向地图添加控件
+    function addMapControl(){
+        var scaleControl = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+        scaleControl.setUnit(BMAP_UNIT_IMPERIAL);
+        map.addControl(scaleControl);
+        var navControl = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+        map.addControl(navControl);
+        var overviewControl = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:true});
+        map.addControl(overviewControl);
+    }
+    var map;
+    initMap();
+</script>
+</html>
