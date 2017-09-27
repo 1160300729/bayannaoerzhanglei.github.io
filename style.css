@@ -31,6 +31,15 @@
     color: seashell;
     font-family: ZhongShan;
     text-align: center;
+    transition: color 1s;
+    -moz-transition: color 1s;
+    -webkit-transition: color 1s; 
+    -o-transition: color 1s; 
+}
+
+
+#header h1:hover {
+    color: #9ee;
 }
 
 #header p {

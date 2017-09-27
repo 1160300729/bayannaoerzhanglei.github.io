@@ -160,5 +160,19 @@
         </ul>
         <span>Made by ZhangLei</span>
     </div>
+    <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        $(document).mousemove(function(e){ 
+            if(e.pageY > 1500){
+                    $("#cate").show(500);
+                    $("#cat").show(500);
+                }
+                else{
+                    $("#cate").hide(500);
+                    $("#cat").hide(500);
+                }
+        })
+        
+    </script>
 </body>
 </html>
